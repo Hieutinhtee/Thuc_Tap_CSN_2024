@@ -1,0 +1,117 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  color: #53585e;
+  
+}
+
+a {
+  text-decoration: none;
+  color: #53585e;
+}
+/* đăng nhập bằng gmail
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  } */
+
+.login-form .form-bg,
+.col-form-description {
+  min-height: 100vh;
+}
+
+.login-form {
+  background-image: url("../image/bg2.png");
+  background-size: cover;
+  padding: 15px 60px;
+}
+
+.login-form .form-container {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 50px;
+}
+
+.login-form .form-header .title {
+  font-size: 1.5rem;
+  color: #5e3ffd;
+  padding-top: 10px;
+}
+.login-form .form-body .field {
+  display: flex;
+}
+.login-form .form-body .field span {
+  height: 45px;
+  width: 50px;
+  line-height: 45px;
+  text-align: center;
+  background: #5e3ffd;
+  color: #fff;
+}
+
+.login-form .form-body .field .form-control {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left: 0;
+}
+
+.login-form .forgot-password {
+  float: right;
+}
+.login-form .submit {
+  background: #5e3ffd;
+  color: #fff;
+  width: 100%;
+}
+.login-form .form-footer .title {
+  font-size: 1rem;
+  font-weight: 400;
+}
+.login-form .form-footer .title {
+  display: flex;
+  justify-content: center;
+}
+.login-form .form-footer .title:before,
+.login-form .form-footer .title:after {
+  content: "";
+  flex-grow: 1;
+  background-color: #ccc;
+  height: 1px;
+  margin-top: 10px;
+}
+.login-form .form-footer .title:before {
+  margin-right: 5px;
+}
+.login-form .form-footer .title:after {
+  margin-left: 5px;
+}
+
+/*Chỉnh responsive*/
+@media screen and (max-width: 480px) {
+  .login-form .form-bg,
+  .form-description {
+    padding: 15px;
+  }
+  .login-form .form-bg,
+  .col-form-description {
+    min-height: 100%;
+  }
+  .form-description {
+    text-align: center;
+  }
+  .login-form .form-bg {
+    order: 1;
+  }
+}
+
+.card{
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.th{
+  text-align: center;
+}
