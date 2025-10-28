@@ -2,13 +2,17 @@
 <html lang="en" data-bs-theme="light">
 <?php
 session_start();
-if (!isset($_SESSION["dangnhap"]) or $_SESSION["dangnhap"] != 0) {
+if (!isset($_SESSION["dangnhap"])) {
   header("location:../DNDK");
+  if($_SESSION["dangnhap"]!=1){
+    header("location:../DNDK");
+  }
+  exit;
 }
 $_SESSION["dangnhap"] = 0;
-
-    $id = $_SESSION['manv'];
-    $tennv = $_SESSION['tennv'];
+$timestamp = time();
+$id = $_SESSION['manv'];
+$tennv = $_SESSION['tennv'];
 
 ?>
 
@@ -42,9 +46,9 @@ $_SESSION["dangnhap"] = 0;
   <script type="module" src="../table/action-table-switch.js"></script>
   <!-- Enable pagination controls -->
   <script type="module" src="../table/action-table-pagination.js"></script>
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/index.css" />
-  <link rel="stylesheet" href="../css/toast.css" />
+  <link rel="stylesheet" href="../css/style.css?<?php echo $timestamp?>" />
+  <link rel="stylesheet" href="../css/index.css?<?php echo $timestamp?>" />
+  <link rel="stylesheet" href="../css/toast.css?<?php echo $timestamp?>" />
 </head>
 
 <div class="toast1">
@@ -74,7 +78,7 @@ $_SESSION["dangnhap"] = 0;
       </div>
       <ul class="sidebar-nav">
         <li class="sidebar-header">Tùy chọn</li>
-        
+
         <li class="sidebar-item">
           <a href="#" class="sidebar-link collapsed" data-bs-target="#congtac" data-bs-toggle="collapse"
             aria-expanded="false"><i class="fa-solid fa-calendar-days pe-2"></i>
@@ -99,8 +103,11 @@ $_SESSION["dangnhap"] = 0;
           <a href="bangluong.php" class="sidebar-link collapsed">
             <i class="fa-solid fa-building pe-2"></i>Bảng lương</a>
         </li>
-        
-        
+        <li class="sidebar-item">
+          <a href="gopy.php" class="sidebar-link collapsed">
+          <i class="fa-solid fa-lightbulb pe-2"></i>Kiến nghị, đề xuất</a>
+        </li>
+
 
         <li class="sidebar-header">Quản lý tài khoản</li>
         <li class="sidebar-item">
@@ -109,7 +116,7 @@ $_SESSION["dangnhap"] = 0;
             Tài khoản
           </a>
           <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-          <li class="sidebar-item">
+            <li class="sidebar-item">
               <a href="thongtin.php" class="sidebar-link">
                 <i class="fa-regular fa-circle me-2"></i>Thông tin cá nhân</a>
             </li>
@@ -137,7 +144,14 @@ $_SESSION["dangnhap"] = 0;
         <ul class="navbar-nav">
           <li class="nav-item dropdown">
             <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
-              <img src="../image/usernam.jpg" class="avatar img-fluid rounded" alt="" />
+              <?php
+              require_once '../connect.php';
+              $sql = "SELECT * FROM NHANVIEN WHERE MANV = $id";
+              $stmt = $conn->prepare($sql);
+              $stmt->execute();
+              $r = $stmt->fetch(PDO::FETCH_ASSOC); ?>
+
+              <img src="../image/<?php echo $r['ANHNV']; ?>" style="max-width: 45px; max-height: 40px; object-fit: cover; border-radius: 10px" class="avatar img-fluid" alt="" />
             </a>
             <div class="dropdown-menu dropdown-menu-end">
               <a href="#" class="dropdown-item">Profile</a>

@@ -11,58 +11,64 @@
 
         </div>
         <div class="card-body">
-            <form action="themcongtac.php" method="post" class="needs-validation" novalidate>
-              
+          <form action="themcongtac.php" method="post" class="needs-validation" novalidate>
+
             <div class="mb-3">
-                <label for="employee" class="form-label">Chọn nhân viên: </label>
-                <select class="form-control" id="nhanvien" required>
+              <label for="employee" class="form-label">Chọn nhân viên: </label>
+              <select class="form-control" id="nhanvien" required>
                 <option selected disabled value="">Chọn nhân viên...</option>
-                  <?php
-                  require_once '../connect.php';
-                  $stmt = $conn->prepare("SELECT MANV,TENNV FROM NHANVIEN");
-                  $stmt->execute();
+                <?php
+                require_once '../connect.php';
+                $stmt = $conn->prepare("SELECT MANV,TENNV FROM NHANVIEN");
+                $stmt->execute();
 
-                  foreach ($stmt->fetchAll() as $r) {
-                    ?>
-                    <option><?php echo $r['MANV']; ?>-<?php echo $r['TENNV']; ?></option>
-                    <?php
-                  }
+                foreach ($stmt->fetchAll() as $r) {
                   ?>
-                </select>
-                <input hidden class="form-control" id="manv" name="manv" required>
-                <input hidden class="form-control" id="tennv" name="tennv" required>
-                <script>
-                  const selectElement = document.getElementById('nhanvien');
-                  const resultElement = document.getElementById('manv');
-                  const resultElement1 = document.getElementById('tennv');
-                  selectElement.addEventListener('change', function () {
+                  <option><?php echo $r['MANV']; ?>-<?php echo $r['TENNV']; ?></option>
+                  <?php
+                }
+                ?>
+              </select>
+              <input hidden class="form-control" id="manv" name="manv" required>
+              <input hidden class="form-control" id="tennv" name="tennv" required>
+              <script>
+                const selectElement = document.getElementById('nhanvien');
+                const resultElement = document.getElementById('manv');
+                const resultElement1 = document.getElementById('tennv');
+                selectElement.addEventListener('change', function () {
 
-                    resultElement.value = selectElement.value.replace(/-.*$/, '');
-                    resultElement1.value = selectElement.value.replace(/^[^-]*-/, '');
-                  });
-                </script>
+                  resultElement.value = selectElement.value.replace(/-.*$/, '');
+                  resultElement1.value = selectElement.value.replace(/^[^-]*-/, '');
+                });
+              </script>
 
-              </div>
-              <div class="mb-3">
-                <label for="dateStart" class="form-label">Ngày bắt đầu</label>
-                <input type="date" class="form-control" id="dateStart" name="batdau" required>
-              </div>
-              <div class="mb-3">
-                <label for="dateEnd" class="form-label">Ngày kết thúc</label>
-                <input type="date" class="form-control" id="dateEnd" name="ketthuc" required>
-              </div>
-              <div class="mb-3">
-                <label for="diaDiemCT" class="form-label"><strong>Địa điểm công tác</strong></label>
-                <input id="diaDiemCT" class="form-control" placeholder="Nhập địa điểm công tác" name="diadiem" required></input>
-              </div>
-              <div class="mb-3">
-                <label for="mucdich" class="form-label"><strong>Mục đích công tác</strong></label>
-                <textarea name="mucdich" class="form-control" placeholder="Nhập mục đích công tác" rows="4"
-                  required></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>
-                Thêm</button>
-            </form>
+            </div>
+            <div class="mb-3">
+              <label for="dateStart" class="form-label">Ngày bắt đầu</label>
+              <input type="date" class="form-control" id="dateStart" name="batdau" required>
+            </div>
+            <div class="mb-3">
+              <label for="dateEnd" class="form-label">Ngày kết thúc</label>
+              <input type="date" class="form-control" id="dateEnd" name="ketthuc" required>
+            </div>
+            <div class="mb-3">
+              <label for="diaDiemCT" class="form-label"><strong>Địa điểm công tác</strong></label>
+              <input id="diaDiemCT" class="form-control" placeholder="Nhập địa điểm công tác" name="diadiem"
+                required></input>
+            </div>
+            <div class="mb-3">
+              <label for="mucdich" class="form-label"><strong>Mục đích công tác</strong></label>
+              <textarea name="mucdich" class="form-control" placeholder="Nhập mục đích công tác" rows="4"
+                required></textarea>
+            </div>
+            <div class="mb-1">
+              <label for="ngayCong" class="form-label">Hỗ trợ công tác</label>
+              <input type="text" class="form-control money-input" placeholder="Nhập tiền hỗ trợ công tác..."
+                name="hotro" required>
+            </div>
+            <button type="submit" class="btn btn-primary m-2"><i class="fa fa-plus" aria-hidden="true"></i>
+              Thêm</button>
+          </form>
         </div>
       </div>
     </div>
@@ -104,14 +110,15 @@
           <table class="table table-hover text-center">
             <thead class="table-warning">
               <tr>
-                <th style="text-align: center;">STT</th>
-                <th style="text-align: center;">Mã nhân viên</th>
-                <th style="text-align: center;">Tên nhân viên</th>
-                <th style="text-align: center;">Ngày bắt đầu</th>
-                <th style="text-align: center;">Ngày kết thúc</th>
-                <th style="text-align: center;">Địa điểm</th>
-                <th style="text-align: center;">Mục đích</th>
-                <th style="text-align: center;">Xóa</th>
+                <th>STT</th>
+                <th>Mã nhân viên</th>
+                <th>Tên nhân viên</th>
+                <th>Ngày bắt đầu</th>
+                <th>Ngày kết thúc</th>
+                <th>Địa điểm</th>
+                <th>Mục đích</th>
+                <th>Tiền phụ cấp công tác</th>
+                <th>Xóa</th>
               </tr>
             </thead>
             <tbody>
@@ -132,6 +139,7 @@
                   <td><?php echo $r['DIADIEM']; ?></td>
 
                   <td><?php echo $r['MUCDICH']; ?></td>
+                  <td class="money"><?php echo $r['HOTRO']; ?></td>
                   <td><a onclick="return confirm('Xác nhận xóa');"
                       href="xoacongtac.php?xid=<?php echo $r['MACONGTAC']; ?>" class="btn btn-outline-danger"><i
                         class="fa-solid fa-trash" aria-hidden="true"></i>

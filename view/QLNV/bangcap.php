@@ -24,6 +24,10 @@
               <input name="motabangcap" id="motabangcap" class="form-control" placeholder="Nhập mô tả..."></input>
             </div>
             <div class="mb-3">
+              <label for="description" class="form-label"><strong>Hệ số lương:</strong></label>
+              <input type="number" step="0.01" name="hsl" class="form-control" placeholder="Nhập hệ số lương..." required></input>
+            </div>
+            <div class="mb-3">
               <label for="position" class="form-label"><strong>Người tạo, chỉnh sửa</strong></label>
               <input type="text" id="position" class="form-control bg-secondary-subtle" value="Admin" readonly>
             </div>
@@ -67,10 +71,10 @@
         <table class="table text-center">
           <thead>
             <tr>
-              <th scope="col">STT</th>
-              <th scope="col">Mã bằng cấp</th>
+              <th scope="col">STT</th> 
               <th scope="col">Tên bằng cấp</th>
-              <th scope="col">Mô tả</th>              
+              <th scope="col">Mô tả</th>   
+              <th scope="col">Hệ số lương theo bằng cấp</th>           
               <th scope="col">Người tạo, sửa</th>    
               <th scope="col">Ngày tạo, sửa</th>                    
               <th scope="col">Sửa</th>
@@ -87,10 +91,11 @@
                       ?>
                       <tr>
                         <th><?php echo $stt += 1; ?></th>
-                        <td><?php echo $r['MABANGCAP']; ?></td>
+                        
                         <td><?php echo $r['TENBANGCAP']; ?></td>
                         
                         <td class="limited-width"><?php echo $r['MOTABANGCAP']; ?></td>
+                        <td><?php echo $r['HESOLUONG']; ?></td>
                         <td>Admin</td>
                         <td><?php echo $r['NGAYTAO']; ?></td>
 

@@ -1,4 +1,5 @@
 <?php
+session_start();
 $id =$_GET["xid"];
 require_once '../connect.php';
 
@@ -11,6 +12,7 @@ try {
   
     // use exec() because no results are returned
     $conn->exec($sql);
+    $_SESSION["toast"] = "oke";
     echo "Record deleted successfully";
   } catch(PDOException $e) {
     echo $sql . "<br>" . $e->getMessage();

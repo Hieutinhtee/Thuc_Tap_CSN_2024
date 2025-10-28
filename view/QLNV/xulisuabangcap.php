@@ -3,12 +3,12 @@
         session_start();
         $id = $_GET["suaid"];
         $tenbangcap = $_POST['tenbangcap'];
-       
+        $hsl = $_POST['hsl'];
        $mota = $_POST['motabangcap'];
        $ngaytaobangcap = $_POST['ngaytaobangcap'];
    
        require_once '../connect.php';
-       $sql = "UPDATE BANGCAP SET TENBANGCAP='$tenbangcap', MOTABANGCAP='$mota', NGAYTAO='$ngaytaobangcap' WHERE MABANGCAP=$id";
+       $sql = "UPDATE BANGCAP SET TENBANGCAP='$tenbangcap', MOTABANGCAP='$mota', NGAYTAO='$ngaytaobangcap',HESOLUONG='$hsl' WHERE MABANGCAP=$id";
        $conn->exec($sql);
        $_SESSION["toast"] = "oke";
        header("Location: bangcap.php");  

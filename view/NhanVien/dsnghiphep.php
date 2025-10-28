@@ -91,7 +91,7 @@
                                                 <tbody>
                                                     <?php
                                                     require_once '../connect.php';
-                                                    $stmt = $conn->prepare("SELECT * FROM NGHIPHEP WHERE PHEDUYET=1");
+                                                    $stmt = $conn->prepare("SELECT * FROM NGHIPHEP WHERE PHEDUYET=1 AND MANHANVIEN=$id");
                                                     $stmt->execute();
                                                     $stt = 0;
                                                     foreach ($stmt->fetchAll() as $r) {
@@ -136,7 +136,7 @@
                                                 <tbody>
                                                     <?php
                                                     require_once '../connect.php';
-                                                    $stmt = $conn->prepare("SELECT * FROM NGHIPHEP WHERE PHEDUYET=2");
+                                                    $stmt = $conn->prepare("SELECT * FROM NGHIPHEP WHERE PHEDUYET=2 AND MANHANVIEN=$id");
                                                     $stmt->execute();
                                                     $stt = 0;
                                                     foreach ($stmt->fetchAll() as $r) {

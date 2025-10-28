@@ -1,5 +1,16 @@
 <?php include('../menu.php'); ?>
-
+<?php
+        require_once '../connect.php';
+        $id = $_GET['xid'];
+        $sql = "SELECT * FROM NHANVIEN WHERE MANV = $id";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $r = $stmt->fetch(PDO::FETCH_ASSOC);
+        $tenbacluong = $r['BACLUONG'];
+        $tenchucvu = $r['CHUCVU'];
+        $tenbangcap = $r['BANGCAP'];
+        ?>
+        
 <div class="container-fluid">
 
   <div class="card" style="width: 100%; height: 100%">
@@ -19,15 +30,9 @@
     <div class="card-body">
       <div class="row">
         <div class="col-md-2">
-          <img src="../image/profile.jpg" alt="lỗi" style="width: 100%;" class="img-fluid">
+          <img src="../image/<?php echo $r['ANHNV']; ?>" alt="lỗi" style="width: 100%;" class="img-fluid">
         </div>
-        <?php
-        require_once '../connect.php';
-        $id = $_GET['xid'];
-        $sql = "SELECT * FROM NHANVIEN WHERE MANV = $id";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-        $r = $stmt->fetch(PDO::FETCH_ASSOC); ?>
+        
 
         <!-- Cột bên trái -->
         <div class="col-md-5">
@@ -87,8 +92,39 @@
             <div class="text-primary ms-2"><?php echo $r['CHUCVU']; ?></div>
           </div>
           <div class="d-flex mb-3">
-            <label class="form-label">Quyền hạn:</label>
-            <div class="text-primary ms-2"><?php echo $r['QUYENHAN']; ?></div>
+            <label class="form-label">Bậc lương:</label>
+            <div class="text-primary ms-2"><?php echo $r['BACLUONG']; ?></div>
+          </div>
+          <?php
+            $sql1 = "SELECT * FROM BACLUONG WHERE TENBACLUONG = '$tenbacluong'";
+            $stmt1 = $conn->prepare($sql1);
+            $stmt1->execute();
+            $r1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+
+            $sql2 = "SELECT * FROM CHUCVU WHERE TENCHUCVU = '$tenchucvu'";
+            $stmt2 = $conn->prepare($sql2);
+            $stmt2->execute();
+            $r2 = $stmt2->fetch(PDO::FETCH_ASSOC);
+
+            $sql3 = "SELECT * FROM BANGCAP WHERE TENBANGCAP = '$tenbangcap'";
+            $stmt3 = $conn->prepare($sql3);
+            $stmt3->execute();
+            $r3 = $stmt3->fetch(PDO::FETCH_ASSOC);
+
+            $tonghesoluong = $r2['HESOLUONG'] + $r3['HESOLUONG'];
+            $tongphucap = $r1['PHUCAP'] + $r2['PHUCAP'];
+          ?>
+          <div class="d-flex mb-3">
+            <label class="form-label">Lương cơ sở:</label>
+            <div class="text-primary ms-2 money"><?php echo $r1['LUONGCOBAN']; ?></div>
+          </div>
+          <div class="d-flex mb-3">
+            <label class="form-label">Hệ số lương:</label>
+            <div class="text-primary ms-2"><?php echo $tonghesoluong; ?></div>
+          </div>
+          <div class="d-flex mb-3">
+            <label class="form-label">Tổng phụ cấp:</label>
+            <div class="text-primary ms-2 money"><?php echo $tongphucap; ?></div>
           </div>
           <div class="d-flex mb-3">
             <label class="form-label">Mã hợp đồng:</label>

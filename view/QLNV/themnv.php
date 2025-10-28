@@ -11,8 +11,20 @@
                 </div>
                 <div class="card-body">
                     <div class="container">
-                        <form action="../TongQuan/themnvform.php" method="post" class="row g-3 needs-validation"
+                        <form action="../TongQuan/themnvform.php" method="post" enctype="multipart/form-data" class="row g-3 needs-validation"
                             novalidate>
+                            <?php
+                                if(isset($_GET['error'])){
+                            ?>
+                                <div class="alert alert-danger">Vui lòng chọn đúng định dạng ảnh yêu cầu!!!</div>
+                            <?php        
+                                }
+                            ?>
+                            <div>
+                                <label for="validationCustom01" class="form-label">Ảnh nhân viên</label>
+                                <input type="file" class="form-control" id="pp" name="pp" required>
+                                <p style="color: #842029;">Chỉ chấp nhận định dạng *.jpg, *.png, *.jpeg</p>
+                            </div>
                             <div>
                                 <label for="validationCustom01" class="form-label">Họ và tên</label>
                                 <input type="text" class="form-control" name="tennv" required>
@@ -20,7 +32,7 @@
                             </div>
                             <div>
                                 <label for="validationCustom01" class="form-label">Số CMND</label>
-                                <input type="text" class="form-control" name="cmnd" required>
+                                <input type="number" class="form-control" name="cmnd" required>
                             </div>
 
                             <div>
@@ -45,7 +57,7 @@
                             </div>
                             <div>
                                 <label for="validationCustom01" class="form-label">Số điện thoại</label>
-                                <input type="text" class="form-control" name="sdt" required>
+                                <input type="number" class="form-control" name="sdt" required>
 
                             </div>
                             <div>

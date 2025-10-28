@@ -19,8 +19,30 @@ $r = $stmt->fetch(PDO::FETCH_ASSOC); ?>
                 </div>
                 <div class="card-body">
                     <div class="container">
-                        <form action="xulisuanhanvien.php?xid=<?php echo $r['MANV']; ?>" method="post"
-                            class="row g-3 needs-validation" novalidate>
+                        <form action="xulisuanhanvien.php?xid=<?php echo $r['MANV']; ?>" enctype="multipart/form-data"
+                            method="post" class="row g-3 needs-validation" novalidate>
+                            <?php
+                            if (isset($_SESSION['error'])) {
+                                ?>
+                                <div class="alert alert-danger">Vui lòng chọn đúng định dạng ảnh yêu cầu!!!</div>
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if (isset($_SESSION['error0'])) {
+                                ?>
+                                <div class="alert alert-danger">Lỗi không xác định, chưa thực hiện thay đổi ảnh!!!</div>
+                            <?php
+                            }
+                            ?>
+                            <div>
+                                <img src="../image/<?php echo $r['ANHNV']; ?>" alt="loi"
+                                    style="height: 75px; width: 75px; border-radius: 10px">
+                                <label for="validationCustom01" class="form-label ">Ảnh nhân viên</label>
+                                <input type="file" class="form-control mt-2" id="pp" name="pp">
+                                <input type="text" hidden="hidden" name="old_pp" value="<?= $r['ANHNV'] ?>">
+                                <p style="color: #842029;">Chỉ chấp nhận định dạng *.jpg, *.png, *.jpeg</p>
+                            </div>
                             <div>
                                 <label for="validationCustom01" class="form-label">Họ và tên</label>
                                 <input type="text" class="form-control" name="tennv" value="<?php echo $r['TENNV']; ?>">
@@ -73,7 +95,7 @@ $r = $stmt->fetch(PDO::FETCH_ASSOC); ?>
                             </div>
                             <div>
                                 <label for="bacLuong" class="form-label">Chọn bằng cấp: </label>
-                                <select class="form-control" id="bangcap1" >
+                                <select class="form-control" id="bangcap1">
                                     <option selected disabled value="<?php echo $r['BANGCAP']; ?>">
                                         <?php echo $r['BANGCAP']; ?>
                                     </option>
@@ -109,13 +131,34 @@ $r = $stmt->fetch(PDO::FETCH_ASSOC); ?>
                                     ?>
                                 </select>
                             </div>
+                            <div>
+                                <label for="bacLuong" class="form-label">Chọn bậc lương: </label>
+                                <select class="form-control" id="bacluong1" name="bacluong1">
+                                    <option selected disabled value="<?php echo $r['BACLUONG']; ?>">
+                                        <?php echo $r['BACLUONG']; ?>
+                                    </option>
+                                    <?php
+                                    require_once '../connect.php';
+                                    $stmt3 = $conn->prepare("SELECT TENBACLUONG FROM BACLUONG");
+                                    $stmt3->execute();
+                                    foreach ($stmt3->fetchAll() as $r3) {
+                                        ?>
+                                        <option><?php echo $r3['TENBACLUONG']; ?></option>
+                                        <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
                             <input hidden class="form-control" id="gioitinh" name="gioitinh" required>
                             <input hidden class="form-control" id="chucvu" name="chucvu" required>
                             <input hidden class="form-control" id="bangcap" name="bangcap" required>
+                            <input hidden class="form-control" id="bacluong" name="bacluong" required>
                             <script>
                                 document.getElementById('gioitinh').value = document.getElementById('gioitinh1').value;
                                 document.getElementById('chucvu').value = document.getElementById('chucvu1').value;
                                 document.getElementById('bangcap').value = document.getElementById('bangcap1').value;
+                                document.getElementById('bacluong').value = document.getElementById('bacluong1').value;
+
                                 document.getElementById('gioitinh1').addEventListener('change', function () {
                                     document.getElementById('gioitinh').value = document.getElementById('gioitinh1').value;
                                 });
@@ -124,6 +167,9 @@ $r = $stmt->fetch(PDO::FETCH_ASSOC); ?>
                                 });
                                 document.getElementById('bangcap1').addEventListener('change', function () {
                                     document.getElementById('bangcap').value = document.getElementById('bangcap1').value;
+                                });
+                                document.getElementById('bacluong1').addEventListener('change', function () {
+                                    document.getElementById('bacluong').value = document.getElementById('bacluong1').value;
                                 });
 
 

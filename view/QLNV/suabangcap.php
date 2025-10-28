@@ -1,18 +1,18 @@
 <?php include('../menu.php'); ?>
 <?php
-    $id = $_GET["xid"];
-    require_once '../connect.php';
+$id = $_GET["xid"];
+require_once '../connect.php';
 
 
-    try {
-        
-        $sql = "SELECT * FROM BANGCAP WHERE MABANGCAP=$id";
-        $stmt = $conn->prepare($sql);
-		$stmt->execute();
-		$r = $stmt->fetch(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        echo $sql . "<br>" . $e->getMessage();
-    }
+try {
+
+    $sql = "SELECT * FROM BANGCAP WHERE MABANGCAP=$id";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $r = $stmt->fetch(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    echo $sql . "<br>" . $e->getMessage();
+}
 
 ?>
 <div class="container-fluid">
@@ -29,8 +29,9 @@
                 <div class="card-body">
 
 
-                    <form action="xulisuabangcap.php?suaid=<?php echo $r['MABANGCAP']; ?>" method="post" class="needs-validation" novalidate>
-                        
+                    <form action="xulisuabangcap.php?suaid=<?php echo $r['MABANGCAP']; ?>" method="post"
+                        class="needs-validation" novalidate>
+
                         <div class="mb-3">
                             <label for="degreeName" class="form-label">Tên bằng cấp: </label>
                             <input name="tenbangcap" type="text" class="form-control" id="tenbangcap"
@@ -38,13 +39,18 @@
                         </div>
                         <div class="mb-3">
                             <label for="description" class="form-label"><strong>Mô tả:</strong></label>
-                            <input name="motabangcap" id="motabangcap" class="form-control"
-                                placeholder="Nhập mô tả..." value="<?php echo $r['MOTABANGCAP']; ?>"></input>
+                            <input name="motabangcap" id="motabangcap" class="form-control" placeholder="Nhập mô tả..."
+                                value="<?php echo $r['MOTABANGCAP']; ?>"></input>
                         </div>
                         <div class="mb-3">
                             <label for="position" class="form-label"><strong>Người tạo</strong></label>
                             <input type="text" id="position" class="form-control bg-secondary-subtle" value="Admin"
                                 readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label"><strong>Hệ số lương:</strong></label>
+                            <input type="number" step="0.01" name="hsl" class="form-control" value="<?php echo $r['HESOLUONG']; ?>"
+                                placeholder="Nhập hệ số lương..."></input>
                         </div>
                         <div class="mb-3">
                             <label for="dateCreat" class="form-label"><strong>Ngày tạo</strong></label>

@@ -39,7 +39,13 @@
                     <!-- Modal body -->
                     <div class="modal-body">
                       <div class="container">
-                        <form action="themnvform.php" method="post" class="row g-3 needs-validation" novalidate>
+                        <form action="themnvform.php" method="post" enctype="multipart/form-data"
+                          class="row g-3 needs-validation" novalidate>
+                          <div>
+                            <label for="validationCustom01" class="form-label">Ảnh nhân viên</label>
+                            <input type="file" class="form-control" id="pp" name="pp" required>
+                            <p style="color: #842029;">Chỉ chấp nhận định dạng *.jpg, *.png, *.jpeg</p>
+                          </div>
                           <div>
                             <label for="validationCustom01" class="form-label">Họ và tên</label>
                             <input type="text" class="form-control" name="tennv" required>
@@ -47,7 +53,7 @@
                           </div>
                           <div>
                             <label for="validationCustom01" class="form-label">Số CMND</label>
-                            <input type="text" class="form-control" name="cmnd" required>
+                            <input type="number" class="form-control" name="cmnd" required>
                           </div>
 
                           <div>
@@ -72,7 +78,7 @@
                           </div>
                           <div>
                             <label for="validationCustom01" class="form-label">Số điện thoại</label>
-                            <input type="text" class="form-control" name="sdt" required>
+                            <input type="number" class="form-control" name="sdt" required>
 
                           </div>
                           <div>
@@ -118,6 +124,22 @@
                               ?>
                             </select>
                           </div>
+                          <div>
+                            <label for="bacLuong" class="form-label">Chọn bậc lương: </label>
+                            <select class="form-control" name="bacluong" required>
+                              <option selected disabled value="">Chọn bậc lương...</option>
+                              <?php
+                              require_once '../connect.php';
+                              $stmt = $conn->prepare("SELECT TENBACLUONG FROM BACLUONG");
+                              $stmt->execute();
+                              foreach ($stmt->fetchAll() as $r) {
+                                ?>
+                                <option><?php echo $r['TENBACLUONG']; ?></option>
+                                <?php
+                              }
+                              ?>
+                            </select>
+                          </div>
                           <button class="btn btn-primary" type="submit"><i class="fa fa-plus" aria-hidden="true"></i>
                             Thêm</button>
                         </form>
@@ -136,16 +158,16 @@
                     <div>
                       <!-- Search Field -->
                       <div class="input-group mb-3 col-5">
-                      <button class="btn btn-primary" type="button" id="button-addon1">Tìm kiếm</button>
+                        <button class="btn btn-primary" type="button" id="button-addon1">Tìm kiếm</button>
                         <input class="form-control " aria-describedby="basic-addon1" id="action-table-search"
                           name="action-table" type="search" placeholder="Search">
-                      </div>                     
+                      </div>
                     </div>
                   </div>
                 </action-table-filters>
               </div>
               <table class="table text-center table-hover">
-                <thead style="top: 0; position: sticky;">
+                <thead class="table-info" style="top: 0; position: sticky;">
                   <tr>
                     <th>Mã nhân viên</th>
                     <th>Ảnh</th>
@@ -161,24 +183,22 @@
                 <tbody>
                   <?php
                   require_once '../connect.php';
-                  $stmt = $conn->prepare("SELECT * FROM NHANVIEN");
+                  $stmt = $conn->prepare("SELECT * FROM NHANVIEN WHERE CHUCVU NOT LIKE 'admin'");
                   $stmt->execute();
 
                   foreach ($stmt->fetchAll() as $r) {
                     ?>
                     <tr>
                       <td><?php echo $r['MANV']; ?> </td>
-                      <td><img src="../image/profile.jpg" alt="loi"
-                          style="height: 50px; width: 50px; border-radius: 10px">
-                      </td>
+                      <td><img src="../image/<?php echo $r['ANHNV']; ?>" alt="loi" style="max-width: 90px; max-height: 120px; object-fit: cover; border-radius: 10px"></td>
                       <td><?php echo $r['TENNV']; ?></td>
                       <td><?php echo $r['DIACHI']; ?></td>
                       <td><?php echo $r['SDT']; ?></td>
                       <td><?php echo $r['EMAIL']; ?></td>
                       <td><?php echo $r['CHUCVU']; ?></td>
 
-                      <td><a href="suanhanvien.php?xid=<?php echo $r['MANV']; ?>" class="btn btn-outline-primary m-1"><i class="fa fa-solid fa-pencil"
-                            aria-hidden="true"></i>
+                      <td><a href="suanhanvien.php?xid=<?php echo $r['MANV']; ?>" class="btn btn-outline-primary m-1"><i
+                            class="fa fa-solid fa-pencil" aria-hidden="true"></i>
                         </a>
                         <a onclick="return confirm('Xác nhận xóa');" href="xoanhanvien.php?xid=<?php echo $r['MANV']; ?>"
                           class="btn btn-outline-danger m-1"><i class="fa-solid fa-trash" aria-hidden="true"></i>

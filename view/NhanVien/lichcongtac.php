@@ -40,6 +40,7 @@
                 <th style="text-align: center;">Ngày kết thúc</th>
                 <th style="text-align: center;">Địa điểm</th>
                 <th style="text-align: center;">Mục đích</th>
+                <th style="text-align: center;">Phụ cấp công tác</th>
                 
               </tr>
             </thead>
@@ -58,7 +59,7 @@
                   <td><?php echo $r['DIADIEM']; ?></td>
 
                   <td><?php echo $r['MUCDICH']; ?></td>
-                  
+                  <td class="money"><?php echo $r['HOTRO']; ?></td>
                 </tr>
                 <?php
               }

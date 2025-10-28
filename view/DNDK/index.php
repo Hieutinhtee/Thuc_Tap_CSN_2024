@@ -49,12 +49,16 @@
 			}
 			if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				$username = $_POST["username"];
-				$password = $_POST["password"];
+				$user_input = $_POST["password"];
+
 				require_once '../connect.php';
-				$sql = "SELECT * FROM NHANVIEN WHERE TENTAIKHOAN='" . $username . "' AND MATKHAU='" . $password . "' ";
+				$sql = "SELECT * FROM NHANVIEN WHERE TENTAIKHOAN='" . $username . "' ";
+
 				$stmt = $conn->prepare($sql);
 				$stmt->execute();
-				$row = $stmt->fetch(PDO::FETCH_ASSOC);
+				$row1 = $stmt->fetch(PDO::FETCH_ASSOC);
+				$stored_hash = $row1['MATKHAU'];
+				$row = password_verify($user_input, $stored_hash);
 				if (!$row) {
 					echo '<div id="loi"><label style="color: red;" class="d-flex justify-content-center">Sai tên tài khoản hoặc mật khẩu!!!</label></div>
 					<script>
@@ -73,21 +77,22 @@
 					</script>';
 				}
 				if ($row) {
-					$_SESSION['manv'] = $row['MANV'] ;
-					$_SESSION['tennv'] = $row['TENNV'] ;
-					if ($row["QUYENHAN"] == "Nhân viên") {
-						$_SESSION["username"] = $username;
+					$_SESSION['manv'] = $row1['MANV'];
+					$_SESSION['tennv'] = $row1['TENNV'];
+					$_SESSION["username"] = $username;
+					if ($row1["QUYENHAN"] == "Nhân viên") {
+
 						$_SESSION["dangnhap"] = '0';
 						header("location:../NhanVien");
-					} elseif ($row["QUYENHAN"] == "Quản trị viên") {
-						$_SESSION["username"] = $username;
+					} elseif ($row1["QUYENHAN"] == "Quản trị viên") {
+
 						$_SESSION["dangnhap"] = '1';
 						header("location:../TongQuan");
 					}
 				}
 			}
 			?>
-			
+
 			<div class="container mt-4">
 				<button type="submit" class="btn-epic d-flex justify-content-center" href="">
 					<div class="d-flex justify-content-center"><span>Đăng nhập</span><span>Đăng nhập</span></div>

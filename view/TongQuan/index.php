@@ -1,19 +1,20 @@
 <?php include('../menu.php'); ?>
 <?php
-  require_once '../connect.php';
-  $sql = $conn->query("SELECT MANV FROM NHANVIEN where MANV IS NOT NULL ");
-  $sonv = $sql->rowCount();
-  $sql1 = $conn->query("SELECT * FROM PHONGBAN where MAPHONGBAN IS NOT NULL ");
-  $sopb = $sql1->rowCount();
-  $sql2 = $conn->query("SELECT * FROM NHANVIEN where MATKHAU IS NOT NULL ");
-  $sotk = $sql2->rowCount();
+require_once '../connect.php';
+$sql = $conn->query("SELECT MANV FROM NHANVIEN where MANV IS NOT NULL ");
+$sonv = $sql->rowCount();
+$sql1 = $conn->query("SELECT * FROM PHONGBAN where MAPHONGBAN IS NOT NULL ");
+$sopb = $sql1->rowCount();
+$sql2 = $conn->query("SELECT * FROM NHANVIEN where MATKHAU IS NOT NULL ");
+$sotk = $sql2->rowCount();
 ?>
 <div class="container-fluid">
   <div class="mb-3">
     <h4>Tổng quan</h4>
   </div>
   <div class="row d-flex mb-3">
-    <div class="col-12 col-md-3 text-light border border-secondary rounded m-2" style="background-color: #1E90FF; box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.3);	">
+    <div class="col-12 col-md-3 text-light border border-secondary rounded m-2"
+      style="background-color: #1E90FF; box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.3);	">
 
       <div class="d-flex align-items-center justify-content-around">
         <div>
@@ -24,11 +25,12 @@
       </div>
       <hr>
       <div>
-        <a href="../TongQuan/dsnhanvien.php" class="text-light align-items-center">Danh sách nhân viên<i class="fa fa-angle-double-right ms-2"
-            aria-hidden="true"></i></a>
+        <a href="../TongQuan/dsnhanvien.php" class="text-light align-items-center">Danh sách nhân viên<i
+            class="fa fa-angle-double-right ms-2" aria-hidden="true"></i></a>
       </div>
     </div>
-    <div class="col-12 col-md-3 text-light border border-secondary rounded m-2" style="background-color: #FF8C00; box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.3);	">
+    <div class="col-12 col-md-3 text-light border border-secondary rounded m-2"
+      style="background-color: #FF8C00; box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.3);	">
 
       <div class="d-flex align-items-center justify-content-around">
         <div>
@@ -39,11 +41,12 @@
       </div>
       <hr>
       <div>
-        <a href="../QLPBan/qlphongban.php" class="text-light align-items-center">Danh sách phòng ban<i class="fa fa-angle-double-right ms-2"
-            aria-hidden="true"></i></a>
+        <a href="../QLPBan/qlphongban.php" class="text-light align-items-center">Danh sách phòng ban<i
+            class="fa fa-angle-double-right ms-2" aria-hidden="true"></i></a>
       </div>
     </div>
-    <div class="col-12 col-md-3 text-light border border-secondary rounded m-2" style="background-color: #D2691E	;box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.3);">
+    <div class="col-12 col-md-3 text-light border border-secondary rounded m-2"
+      style="background-color: #D2691E	;box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.3);">
 
       <div class="d-flex align-items-center justify-content-around">
         <div>
@@ -54,11 +57,12 @@
       </div>
       <hr>
       <div>
-        <a href="dstaikhoan.php" class="text-light align-items-center">Danh sách tài khoản<i class="fa fa-angle-double-right ms-2"
-            aria-hidden="true"></i></a>
+        <a href="dstaikhoan.php" class="text-light align-items-center">Danh sách tài khoản<i
+            class="fa fa-angle-double-right ms-2" aria-hidden="true"></i></a>
       </div>
     </div>
-    <div class="col-12 col-md-3 text-light border border-secondary rounded bg-danger m-2" style="box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.3);">
+    <div class="col-12 col-md-3 text-light border border-secondary rounded bg-danger m-2"
+      style="box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.3);">
 
       <div class="d-flex align-items-center justify-content-around">
         <div>
@@ -73,8 +77,33 @@
             class="fa fa-angle-double-right ms-2" aria-hidden="true"></i></a>
       </div>
     </div>
-    
-    <div class="col-12 col-md-3 text-light border border-secondary rounded bg-success m-2" style="box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.3);">
+    <!-- modal xuất xlxs -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Xuất báo cáo</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form action="xuatbaocao.php" method="post">
+              <button type="submit" name="xuat_dsnv" class="btn btn-success m-1">Danh sách nhân viên</button>
+              <button type="submit" name="xuat_dsluong" class="btn btn-success m-1">Danh sách lương</button>
+              <button type="submit" name="xuat_dscongtac" class="btn btn-success m-1">Lịch công tác</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Đóng</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal xuất xlxs -->
+
+
+    <div class="col-12 col-md-3 text-light border border-secondary rounded bg-success m-2"
+      style="box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.3);">
 
       <div class="d-flex align-items-center justify-content-around">
         <div>
@@ -85,10 +114,12 @@
       </div>
       <hr>
       <div>
-        <a href="link" class="text-light align-items-center">Xuất báo cáo<i class="fa fa-angle-double-right ms-2"
-            aria-hidden="true"></i></a>
+
+        <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="text-light align-items-center">Xuất báo cáo<i
+            class="fa fa-angle-double-right ms-2" aria-hidden="true"></i></a>
       </div>
     </div>
+
 
 
   </div>
@@ -126,26 +157,26 @@
               </tr>
             </thead>
             <tbody>
-            <?php
-                    require_once '../connect.php';
-                    $stmt = $conn->prepare("SELECT * FROM PHONGBAN");
-                    $stmt->execute();
-                    $stt = 0;
-                    
-                    foreach ($stmt->fetchAll() as $r) {
-                      
-                      ?>
-                      <tr>
-                        <th><?php echo $stt += 1; ?></th>
-                        <td><?php echo $r['MAPHONGBAN']; ?></td>
-                        <td><?php echo $r['TENPHONGBAN']; ?></td>
-                        
-                        
-                      </tr>
-                      <?php
-                    }
-                    ?>
-            
+              <?php
+              require_once '../connect.php';
+              $stmt = $conn->prepare("SELECT * FROM PHONGBAN");
+              $stmt->execute();
+              $stt = 0;
+
+              foreach ($stmt->fetchAll() as $r) {
+
+                ?>
+                <tr>
+                  <th><?php echo $stt += 1; ?></th>
+                  <td><?php echo $r['MAPHONGBAN']; ?></td>
+                  <td><?php echo $r['TENPHONGBAN']; ?></td>
+
+
+                </tr>
+                <?php
+              }
+              ?>
+
             </tbody>
           </table>
         </div>
@@ -182,23 +213,23 @@
               </tr>
             </thead>
             <tbody>
-            <?php
-                    require_once '../connect.php';
-                    $stmt = $conn->prepare("SELECT * FROM CHUCVU");
-                    $stmt->execute();
-                    $stt = 0;
-                    foreach ($stmt->fetchAll() as $r) {
-                      ?>
-                      <tr>
-                        <th><?php echo $stt += 1; ?></th>
-                        <td><?php echo $r['MACHUCVU']; ?></td>
-                        <td><?php echo $r['TENCHUCVU']; ?></td>
-                        
-                       
-                      </tr>
-                      <?php
-                    }
-                    ?>
+              <?php
+              require_once '../connect.php';
+              $stmt = $conn->prepare("SELECT * FROM CHUCVU");
+              $stmt->execute();
+              $stt = 0;
+              foreach ($stmt->fetchAll() as $r) {
+                ?>
+                <tr>
+                  <th><?php echo $stt += 1; ?></th>
+                  <td><?php echo $r['MACHUCVU']; ?></td>
+                  <td><?php echo $r['TENCHUCVU']; ?></td>
+
+
+                </tr>
+                <?php
+              }
+              ?>
             </tbody>
           </table>
         </div>

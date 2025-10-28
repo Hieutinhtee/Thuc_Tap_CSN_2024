@@ -21,12 +21,12 @@
               
               
               <div class="mb-3">
-                <label for="employee" class="form-label">Chọn nhân viên: </label>
+                <label for="employee" class="form-label"><strong>Chọn nhân viên: </strong></label>
                 <select class="form-control" id="nhanvien" required>
                 <option selected disabled value="">Chọn nhân viên...</option>
                   <?php
                   require_once '../connect.php';
-                  $stmt = $conn->prepare("SELECT MANV,TENNV FROM NHANVIEN WHERE BACLUONG IS NULL");
+                  $stmt = $conn->prepare("SELECT MANV,TENNV FROM NHANVIEN");
                   $stmt->execute();
 
                   foreach ($stmt->fetchAll() as $r) {
@@ -50,40 +50,18 @@
                 </script>
 
               </div>
+              
               <div class="mb-3">
-                <label for="bacLuong" class="form-label">Chọn bậc lương: </label>
-                <select class="form-control" name="bacluong" required>
-                <option selected disabled value="">Chọn bậc lương...</option>
-                  <?php
-                  require_once '../connect.php';
-                  $stmt = $conn->prepare("SELECT TENBACLUONG FROM BACLUONG");
-                  $stmt->execute();
-
-                  foreach ($stmt->fetchAll() as $r) {
-                    ?>
-                    <option><?php echo $r['TENBACLUONG']; ?></option>
-                    <?php
-                  }
-                  ?>
-                </select>
+                <label for="ngayCong" class="form-label"><strong>Số ngày công:</strong></label>
+                <input type="number" class="form-control" name="songaycong" placeholder="Nhập số ngày công ..." required>
               </div>
               <div class="mb-3">
-                <label for="ngayCong" class="form-label">Số giờ làm</label>
-                <input type="number" class="form-control" name="sogiolam" placeholder="Nhập số giờ" required>
-              </div>
-              <div class="mb-3">
-                <label for="ngayCong" class="form-label">Số giờ tăng ca</label>
-                <input type="number" class="form-control" name="sogiotangca" placeholder="Nhập số giờ tăng ca" required>
+                <label for="ngayCong" class="form-label"><strong>Số giờ tăng ca:</strong></label>
+                <input type="number" class="form-control" name="sogiotangca" placeholder="Nhập số giờ tăng ca ..." required>
               </div>
 
-              <div class="mb-3">
-                <label for="viPham" class="form-label"><strong>Vi phạm:</strong></label>
-                <input id="viPham" class="form-control" name="tienvipham" placeholder="Nhập số tiền vi phạm:..." required></input>
-              </div>
-              <div class="mb-3">
-                <label for="thuong" class="form-label"><strong>Thưởng:</strong></label>
-                <input id="thuong" class="form-control" name="thuong" placeholder="Nhập tiền thưởng:..." required></input>
-              </div>
+              
+              
 
               <button type="submit" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>
                 Thêm</button>

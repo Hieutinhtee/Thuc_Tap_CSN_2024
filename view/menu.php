@@ -1,17 +1,20 @@
-<!DOCTYPE html>
-<html lang="en" data-bs-theme="light">
+
 <?php
 session_start();
-if (!isset($_SESSION["dangnhap"]) or $_SESSION["dangnhap"] != '1') {
+if (!isset($_SESSION["dangnhap"])) {
   header("location:../DNDK");
+  if($_SESSION["dangnhap"]!=1){
+    header("location:../DNDK");
+  }
 }
 else{
 $_SESSION["dangnhap"] = 1;
 }
-
+$timestamp = time();
 
 ?>
-
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -42,9 +45,9 @@ $_SESSION["dangnhap"] = 1;
     <script type="module" src="../table/action-table-switch.js"></script>
     <!-- Enable pagination controls -->
     <script type="module" src="../table/action-table-pagination.js"></script>
-  <link rel="stylesheet" href="../css/style.css?1" />
-  <link rel="stylesheet" href="../css/index.css?1" />
-  <link rel="stylesheet" href="../css/toast.css?2" />
+  <link rel="stylesheet" href="../css/style.css?<?php echo $timestamp?>" />
+  <link rel="stylesheet" href="../css/index.css?<?php echo $timestamp?>" />
+  <link rel="stylesheet" href="../css/toast.css?<?php echo $timestamp?>" />
 </head>
 
 <div class="toast1">
@@ -65,7 +68,7 @@ $_SESSION["dangnhap"] = 1;
     <!-- Sidebar Content -->
     <div class="h-100 fixed-element">
       <div class="sidebar-logo">
-        <a href="index.php"><img src="../image/logoHHH.jpg" alt="Lối"
+        <a href=""><img src="../image/logoHHH.jpg" alt="Lối"
             style="height: 50px; width: 50px; border-radius: 10px" /></a>
         <div>
           <p><b>Admin</b></p>
@@ -130,11 +133,11 @@ $_SESSION["dangnhap"] = 1;
           <ul id="luong" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
             <li class="sidebar-item">
               <a href="../QLLuong/bangchamcong.php" class="sidebar-link">
-                <i class="fa-regular fa-circle me-2"></i>Bảng chấm công</a>
+                <i class="fa-regular fa-circle me-2"></i>Thêm chấm công</a>
             </li>
             <li class="sidebar-item">
               <a href="../QLLuong/table.php" class="sidebar-link">
-                <i class="fa-regular fa-circle me-2"></i>Bảng tính lương</a>
+                <i class="fa-regular fa-circle me-2"></i>Bảng lương</a>
             </li>
             <li class="sidebar-item">
               <a href="../QLLuong/bacluong.php" class="sidebar-link">
@@ -156,12 +159,16 @@ $_SESSION["dangnhap"] = 1;
               <a href="../QLCT/dsnghiphep.php" class="sidebar-link">
                 <i class="fa-regular fa-circle me-2"></i>Danh sách đơn nghỉ phép</a>
             </li>
-            <li class="sidebar-item">
-              <a href="../QLCT/duyetnghiphep.php" class="sidebar-link">
-                <i class="fa-regular fa-circle me-2"></i>Duyệt đơn nghỉ phép</a>
-            </li>
             
           </ul>
+        </li>
+        <li class="sidebar-item">
+          <a href="../Danhgia/danhgia.php" class="sidebar-link collapsed">
+            <i class="fa-solid fa-medal pe-2"></i>Khen thưởng, vi phạm</a>
+        </li>
+        <li class="sidebar-item">
+          <a href="../Gopy/gopy.php" class="sidebar-link collapsed">
+          <i class="fa-solid fa-lightbulb pe-2"></i>Hòm thư góp ý, đề xuất</a>
         </li>
 
         <li class="sidebar-header">Quản lý tài khoản</li>

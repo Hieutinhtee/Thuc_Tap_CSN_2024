@@ -3,11 +3,10 @@ session_start();
 require_once '../connect.php';
 $luongcb = $_POST['lcb'];
 $tenbacluong = $_POST['tenbacluong'];
-$luongtc = $_POST['ltc'];
-$hotro = $_POST['hotro'];
+$thamnien = $_POST['thamnien'];
 $phucap = $_POST['phucap'];
-$sql = "INSERT INTO BACLUONG (TENBACLUONG, LUONGCOBAN,LUONGTANGCA, HOTRO, PHUCAP)
-       VALUES ('$tenbacluong', '$luongcb','$luongtc','$hotro','$phucap')";
+$sql = "INSERT INTO BACLUONG (TENBACLUONG, LUONGCOBAN, THAMNIEN, PHUCAP)
+       VALUES ('$tenbacluong', '$luongcb','$thamnien','$phucap')";
 $conn->exec($sql);
 $_SESSION["toast"] = "oke";
 header("Location: bacluong.php");

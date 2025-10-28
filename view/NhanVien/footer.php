@@ -52,13 +52,25 @@
         });
     })();
 </script>
+<script>
+    // Lấy tất cả các ô có class "money"
+    const moneyCells = document.querySelectorAll('.money');
+
+    // Lặp qua từng ô và định dạng số tiền
+    moneyCells.forEach(cell => {
+        const amount = parseFloat(cell.textContent); // Lấy giá trị số từ ô
+        if (!isNaN(amount)) {
+            cell.textContent = amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }); // Định dạng tiền tệ
+        }
+    });
+</script>
 <?php
 if (isset($_SESSION["toast"])) {
     if ($_SESSION["toast"] == "oke") {
        
         $_SESSION["toast"]="no";
         ?>
-        <script src="../js/toast.js?1"></script>
+        <script src="../js/toast.js?<?php echo $timestamp?>"></script>
         <?php
     }
 }

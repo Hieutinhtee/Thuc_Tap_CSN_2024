@@ -38,7 +38,16 @@ $r = $stmt->fetch(PDO::FETCH_ASSOC);
                             <label for="description" class="form-label"><strong>Mô tả:</strong></label>
                             <textarea class="form-control" aria-label="With textarea"
                                 name="motachucvu"><?php echo $r['MOTACHUCVU']; ?></textarea>
-
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label"><strong>Hệ số lương:</strong></label>
+                            <input type="number" step="0.01" name="hsl" class="form-control"
+                                placeholder="Nhập hệ số lương..." value="<?php echo $r['HESOLUONG']; ?>"></input>
+                        </div>
+                        <div class="mb-1">
+                            <label class="form-label">Phụ cấp</label>
+                            <input type="text" class="form-control money-input" name="phucap" value="<?php echo $r['PHUCAP']; ?>"
+                                placeholder="Nhập tiền phụ cấp...">
                         </div>
                         <div class="mb-3">
                             <label for="description" class="form-label"><strong>Người sửa</strong></label>

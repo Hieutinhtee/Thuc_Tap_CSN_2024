@@ -12,24 +12,21 @@
                 <div class="card-body">
                     <form action="thembacluong.php" method="post" class="needs-validation" novalidate>
                         <div class="mb-1">
-                            <label for="ngayCong" class="form-label">Tên bậc lương</label>
-                            <input type="text" class="form-control" name="tenbacluong" required>
+                            <label for="ngayCong" class="form-label ">Tên bậc lương</label>
+                            <input type="text" class="form-control" placeholder="Nhập tên bậc lương..." name="tenbacluong" required>
                         </div>
                         <div class="mb-1">
-                            <label for="ngayCong" class="form-label">Lương cơ bản</label>
-                            <input type="number" class="form-control" name="lcb" required>
+                            <label for="ngayCong" class="form-label">Lương cơ sở</label>
+                            <input type="text" class="form-control money-input" placeholder="Nhập tiền lương cơ sở..." name="lcb" required>
                         </div>
                         <div class="mb-1">
-                            <label for="ngayCong" class="form-label">Lương tăng ca</label>
-                            <input type="number" class="form-control" name="ltc" required>
+                            <label for="ngayCong" class="form-label">Phụ cấp thâm niên</label>
+                            <input type="text" class="form-control money-input" placeholder="Nhập tiền phụ cấp thâm niên..." name="phucap" required>
                         </div>
+                        
                         <div class="mb-1">
-                            <label for="ngayCong" class="form-label">Phụ cấp</label>
-                            <input type="number" class="form-control" name="phucap" required>
-                        </div>
-                        <div class="mb-1">
-                            <label for="ngayCong" class="form-label">Hỗ trợ</label>
-                            <input type="number" class="form-control" name="hotro" required>
+                            <label for="ngayCong" class="form-label">Thâm niên yêu cầu</label>
+                            <input type="text" class="form-control" placeholder="Nhập thâm niên yêu cầu tối thiểu..." name="thamnien" required>
                         </div>
                         <button type="submit" class="btn btn-primary m-1"><i class="fa fa-plus" aria-hidden="true"></i>
                             Thêm</button>
@@ -64,10 +61,9 @@
                         <tr>
                             <th scope="col">STT</th>
                             <th scope="col">Tên bậc lương</th>
-                            <th scope="col">Lương cơ bản</th>
-                            <th scope="col">Lương tăng ca</th>
-                            <th scope="col">Hỗ trợ</th>
-                            <th scope="col">Phụ cấp</th>
+                            <th scope="col">Lương cơ sở</th>
+                            <th scope="col">Phụ cấp thâm niên</th>
+                            <th scope="col">Thâm niên yêu cầu</th>
                             <th scope="col">Sửa</th>
                             <th scope="col">Xóa</th>
                         </tr>
@@ -84,10 +80,10 @@
                                 <th><?php echo $stt += 1; ?></th>
                                 
                                 <td><?php echo $r['TENBACLUONG']; ?></td>
-                                <td><?php echo $r['LUONGCOBAN']; ?></td>
-                                <td><?php echo $r['LUONGTANGCA']; ?></td>
-                                <td><?php echo $r['HOTRO']; ?></td>
-                                <td><?php echo $r['PHUCAP']; ?></td>
+                                <td class="money"><?php echo $r['LUONGCOBAN']; ?></td>
+                                <td class="money"><?php echo $r['PHUCAP']; ?></td>
+                                <td><?php echo $r['THAMNIEN']; ?></td>
+                                
 
 
 
