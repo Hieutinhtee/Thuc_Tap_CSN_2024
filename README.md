@@ -44,16 +44,16 @@ Website cung cấp công cụ hỗ trợ người quản trị và nhân viên d
 ## 💾 Cài đặt và chạy thử
 1. Cài **XAMPP** (bao gồm Apache + MySQL).  
 2. Clone hoặc tải project về thư mục:
-C:\xampp\htdocs\FourH_HRM
+C:\xampp\htdocs\Thuc_Tap_CSN_2024
 
 markdown
 Sao chép mã
 3. Khởi động **Apache** và **MySQL** trong XAMPP Control Panel.  
 4. Truy cập `http://localhost/phpmyadmin`  
-- Tạo cơ sở dữ liệu: `fourh_hrm`  
-- Import file SQL của project.  
+- Tạo cơ sở dữ liệu: `hhhh1`  
+- Import file SQL `hhhh1.sql` của project.  
 5. Mở trình duyệt và truy cập:
-http://localhost/FourH_HRM
+http://localhost/Thuc_Tap_CSN_2024
 
 ---
 
