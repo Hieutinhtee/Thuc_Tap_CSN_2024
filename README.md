@@ -54,7 +54,7 @@ Sao chép mã
 - Import file SQL `hhhh1.sql` của project.  
 5. Mở trình duyệt và truy cập:
 http://localhost/Thuc_Tap_CSN_2024\view
-
+6. Tài khoản, mật khẩu đăng nhập: admin/admin và nhanvien/nhanvien
 ---
 
 ## 🧠 Mục tiêu đề tài
