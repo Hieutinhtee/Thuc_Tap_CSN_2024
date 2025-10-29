@@ -44,7 +44,7 @@ Website cung cấp công cụ hỗ trợ người quản trị và nhân viên d
 ## 💾 Cài đặt và chạy thử
 1. Cài **XAMPP** (bao gồm Apache + MySQL).  
 2. Clone hoặc tải project về thư mục:
-C:\xampp\htdocs\Thuc_Tap_CSN_2024
+C:\xampp\htdocs\Thuc_Tap_CSN_2024\view
 
 markdown
 Sao chép mã
@@ -53,7 +53,7 @@ Sao chép mã
 - Tạo cơ sở dữ liệu: `hhhh1`  
 - Import file SQL `hhhh1.sql` của project.  
 5. Mở trình duyệt và truy cập:
-http://localhost/Thuc_Tap_CSN_2024
+http://localhost/Thuc_Tap_CSN_2024\view
 
 ---
 
